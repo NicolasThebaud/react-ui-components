@@ -1,0 +1,13 @@
+.input-main {
+}
+
+.input {
+    width: 300px;
+    font-size: 32px;
+
+    /* border */
+    border: 0 none;
+    border-bottom: 3px solid;
+    outline: none;
+}
+.input:focus { outline: none; }

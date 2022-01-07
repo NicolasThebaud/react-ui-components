@@ -1,0 +1,25 @@
+.btn {
+    /* overrides */
+    -webkit-appearance: none;
+    -moz-appearance:    none;
+    appearance:         none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    white-space: nowrap;
+
+    /* border */
+    border: 0 none;
+
+    /* font */
+    /*font-size: 32px;*/
+
+    /* misc */
+    /*padding: 16px 32px;*/
+    overflow: hidden;
+}
+
+/*.btn-round { border-radius: 32px; }*/
+.btn-square { border-radius: 0; }

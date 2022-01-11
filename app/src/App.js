@@ -11,6 +11,7 @@ import Rail from "./components/Rail";
 // STYLES
 import Theme from "./styles/Theme";
 import './App.css';
+import ProgressTile from "./components/ProgressTile";
 
 function App() {
     const tileRef = createRef();
@@ -22,11 +23,16 @@ function App() {
         {title: "rail 2", poster},
         {title: "rail 3", poster},
         {title: "rail 4", poster},
+        {title: "rail 5", poster},
+        {title: "rail 6", poster},
+        {title: "rail 7", poster},
+        {title: "rail 8", poster},
+        {title: "rail 9", poster},
     ];
 
     return (
         <div className="App">
-            <Button
+            {/*<Button
                 label="focus tile"
                 style={Theme.btnRound}
                 bg={Theme.black}
@@ -57,8 +63,14 @@ function App() {
                 progress={50}
                 color={Theme.green}/>
 
-            <div style={{height: "50px"}}></div>
-            <Rail ref={railRef} data={railData}/>
+            <div style={{height: "50px"}}></div>*/}
+            <Rail ref={railRef} data={railData} tileFormat={Theme.BIG_TILE} fontSize={32}/>
+
+            {/*<div style={{height: "50px"}}></div>
+            <ProgressTile
+                title="base tile"
+                poster="http://static-cdn.tv.sfr.net/wcsstore/CanalTvodStore/images/catalog/5/6/4/CTV_MOVIE_68465_src_2p3.jpg?w=300"
+            />*/}
         </div>
     );
 }

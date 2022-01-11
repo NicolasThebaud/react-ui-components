@@ -9,7 +9,10 @@ const Theme = {
 
     // BTN STYLES
     btnRound: "btn-round",
-    btnSquare: "btn-square"
+    btnSquare: "btn-square",
+
+    // TILE FORMATS
+    BIG_TILE: [300, 450]
 };
 
 export default Theme;

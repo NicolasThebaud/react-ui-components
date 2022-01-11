@@ -1,15 +1,12 @@
 .tile-main {
-    width: 150px;
-    height: 225px;
+    position: relative;
 }
 
 .tile-img {
-    width: 150px;
-    outline: solid 4px transparent;
-    outline-offset: -4px;
+    outline: solid 8px transparent;
+    outline-offset: -8px;
 }
 
 .tile-title {
-    top: 235px;
     font-size: 18px;
 }

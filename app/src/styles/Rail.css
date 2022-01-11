@@ -1,7 +1,12 @@
 .rail-main {
+    position: absolute;
+    overflow: hidden;
+    display: inline-block;
+    left: 50px;
+    transition: left ease-out 400ms;
 }
 
 .rail-tile {
-    margin-right: 20px;
-    display: inline-block !important;
+    padding-right: 20px;
+    display: table-cell;
 }

@@ -1,37 +1,45 @@
 // CORE
-import {useState, useCallback, forwardRef, useEffect} from "react";
+import {useState, useCallback, forwardRef} from "react";
 
 // COMPONENTS
 import Tile from "./Tile";
 
-import Theme from "../styles/Theme";
+// STYLES
 import "../styles/Rail.css";
 
 const Rail = forwardRef((props, ref) => {
     const [internalFocus, setInternalFocus] = useState(null);
 
-    useEffect(() => {
-        if (internalFocus !== null) {
-            document.querySelector(`#tile_${internalFocus}>div`).focus();
-        }
-    }, [internalFocus]);
-
     const handleFocus = (e, focus) => {
-        if (focus && e.target === ref.current) {
-            setInternalFocus(0);
-        } else if (!focus) {
-            document.querySelector(`#tile_${internalFocus}>div`).blur();
-        }
+        setInternalFocus(focus ? 0 : null);
     };
 
     const handleKeyDown = useCallback((e) => {
-        switch(e.key) {
-            case "ArrowRight":
-                setInternalFocus(Math.min(internalFocus + 1, props.data.length - 1));
-                break;
-            case "ArrowLeft":
-                setInternalFocus(Math.max(internalFocus - 1, 0));
-                break;
+        let index;
+        let direction;
+
+        if (e.key === "ArrowRight") {
+            index = Math.min(internalFocus + 1, props.data.length - 1);
+            direction = 1;
+            setInternalFocus(index);
+        } else if (e.key === "ArrowLeft") {
+            index = Math.max(internalFocus - 1, 0);
+            direction = 0;
+            setInternalFocus(index);
+        } else {
+            return;
+        }
+
+        const tileRect = ref.current.querySelector(`#tile_${index}`).getBoundingClientRect();
+        const halfTile = tileRect.left + (props.tileFormat[0] / 2);
+        const railX = ref.current.getBoundingClientRect().left;
+        const threshold = 960;
+        const maxWidth = tileRect.width * props.data.length;
+
+        if ((halfTile > threshold && direction === 1)
+            || (halfTile < threshold && direction === 0)) {
+            const maxRight = Math.max(threshold - halfTile + railX, 1920 - 50 - maxWidth);
+            ref.current.style.left = `${Math.min(50, maxRight)}px`;
         }
     });
 
@@ -39,9 +47,11 @@ const Rail = forwardRef((props, ref) => {
         return props.data.map((tileData, i) => (
             <div key={`tile_${i}`} id={`tile_${i}`} className="rail-tile">
                 <Tile
-                      focus={internalFocus === i}
-                      title={tileData.title}
-                      poster={tileData.poster}
+                    focus={internalFocus === i}
+                    title={tileData.title}
+                    poster={tileData.poster}
+                    tileFormat={props.tileFormat}
+                    fontSize={props.fontSize}
                 />
             </div>
         ));

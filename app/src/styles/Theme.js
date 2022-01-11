@@ -12,7 +12,8 @@ const Theme = {
     btnSquare: "btn-square",
 
     // TILE FORMATS
-    BIG_TILE: [300, 450]
+    BIG_TILE: [300, 450],
+    SMALL_TILE: [150, 225]
 };
 
 export default Theme;

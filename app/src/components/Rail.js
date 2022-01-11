@@ -30,7 +30,7 @@ const Rail = forwardRef((props, ref) => {
             return;
         }
 
-        const tileRect = ref.current.querySelector(`#tile_${index}`).getBoundingClientRect();
+        const tileRect = ref.current.querySelector(`.tile_${index}`).getBoundingClientRect();
         const halfTile = tileRect.left + (props.tileFormat[0] / 2);
         const railX = ref.current.getBoundingClientRect().left;
         const threshold = 960;
@@ -38,14 +38,14 @@ const Rail = forwardRef((props, ref) => {
 
         if ((halfTile > threshold && direction === 1)
             || (halfTile < threshold && direction === 0)) {
-            const maxRight = Math.max(threshold - halfTile + railX, 1920 - 50 - maxWidth);
-            ref.current.style.left = `${Math.min(50, maxRight)}px`;
+            const maxRight = Math.max(threshold - halfTile + railX, 1920 - maxWidth);
+            ref.current.style.left = `${Math.min(0, maxRight)}px`;
         }
     });
 
     const renderTiles = (props) => {
         return props.data.map((tileData, i) => (
-            <div key={`tile_${i}`} id={`tile_${i}`} className="rail-tile">
+            <div key={`tile_${i}`} className={`tile_${i} rail-tile`}>
                 <Tile
                     focus={internalFocus === i}
                     title={tileData.title}
@@ -58,7 +58,7 @@ const Rail = forwardRef((props, ref) => {
     }
 
     return (
-        <div ref={ref} tabIndex={-1} className="rail-main"
+        <div ref={ref} tabIndex={-1} className="rail-main" style={props.style}
              onKeyDown={handleKeyDown}
              onFocus={(e) => handleFocus(e, true)}
              onBlur={(e) => handleFocus(e, false)}

@@ -22,7 +22,11 @@ const Tile = forwardRef((props, ref) => {
              style={{width: props.tileFormat[0], height: props.tileFormat[1] + props.fontSize + 10}}
         >
             <img className="tile-img" src={props.poster}
-                 style={{outlineColor: (internalfocus || props.focus) ? Theme.green : "transparent"}}/>
+                 style={{
+                     outlineColor: (internalfocus || props.focus) ? Theme.green : "transparent",
+                     width: props.tileFormat[0],
+                     height: props.tileFormat[1],
+                }}/>
             <div className="tile-title"
                  style={{
                      top: `${props.tileFormat[1] + 10}px`,

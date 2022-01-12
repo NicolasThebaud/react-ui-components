@@ -20,7 +20,12 @@ export default function ProgressTile(props) {
              onFocus={() => handleFocus(true)}
              onBlur={() => handleFocus(false)}
         >
-            <Tile title={props.title} poster={props.poster} >
+            <Tile
+                title={props.title}
+                poster={props.poster}
+                tileFormat={props.tileFormat}
+                fontSize={props.fontSize}
+            >
                 <ProgressBar
                     focus={internalfocus}
                     progress={50}
